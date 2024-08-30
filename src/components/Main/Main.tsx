@@ -67,22 +67,22 @@ export const Main: FC = (): ReactElement => {
   const readOutResponse = (htmlText: string) => {
     if ("speechSynthesis" in window) {
       window.speechSynthesis.cancel();
-      const utterance = new SpeechSynthesisUtterance(htmlText.replace(/<[^>]*>/g, ""));
+      const output = new SpeechSynthesisUtterance(htmlText.replace(/<[^>]*>/g, ""));
 
       const voices = window.speechSynthesis.getVoices();
       const selectedVoice = voices.find((voice) => voice.voiceURI === "Samantha");
 
       if (selectedVoice) {
-        utterance.voice = selectedVoice;
+        output.voice = selectedVoice;
       } else {
         console.warn(`Voice with URI Samantha not found.`);
       }
 
-      utterance.onerror = (event) => {
+      output.onerror = (event) => {
         console.error("Speech synthesis error:", event.error);
       };
 
-      window.speechSynthesis.speak(utterance);
+      window.speechSynthesis.speak(output);
     } else {
       console.warn("Speech synthesis not supported in this browser.");
     }
