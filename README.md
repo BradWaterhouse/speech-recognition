@@ -1,12 +1,15 @@
 # React Speech Recognition App
 
-This is a simple React application that uses the Web Speech API to transcribe speech to text and integrates with OpenAI's ChatGPT to provide answers to users' spoken questions. The application allows users to start and stop speech recognition using buttons, display the transcribed text on the screen, and automatically fetch a response from ChatGPT based on the transcribed text.
+This is a simple React application that uses the Web Speech API to transcribe speech to text and integrates with OpenAI's ChatGPT to provide answers to users' spoken questions. The application allows users to start and stop speech recognition using buttons, display the transcribed text on the screen, and automatically fetch a response from ChatGPT based on the transcribed text. Additionally, the application offers an optional text-to-speech feature to read out the response.
+
+![Football Fixture Risk Predictor Screenshot](public/app-screenshot.png)
 
 ## Features
 
 - **Start and Stop Speech Recognition**: Users can start and stop the speech recognition process with buttons.
 - **Display Transcribed Text**: The recognized speech is displayed as text on the screen.
 - **Fetch Responses from ChatGPT**: The app automatically sends the transcribed text as a query to ChatGPT and displays the response.
+- **Optional Text-to-Speech**: The application can read out the responses using the Web Speech API's text-to-speech feature. Users can mute or unmute this feature as desired.
 - **Automatic Stop on Silence**: The recognition stops automatically when the user stops speaking.
 - **Browser Compatibility Check**: The app checks if the user's browser supports the Web Speech API.
 
@@ -15,7 +18,7 @@ This is a simple React application that uses the Web Speech API to transcribe sp
 - **React**: A JavaScript library for building user interfaces.
 - **TypeScript**: A strongly typed programming language that builds on JavaScript.
 - **CSS**: Styling is handled using external CSS files.
-- **Web Speech API**: A browser API for speech recognition.
+- **Web Speech API**: A browser API for speech recognition and text-to-speech functionality.
 - **OpenAI ChatGPT API**: An API to generate responses based on user input.
 
 ## Prerequisites

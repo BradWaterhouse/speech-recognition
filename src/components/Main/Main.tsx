@@ -1,4 +1,4 @@
-import { FC, ReactElement, useEffect, useState } from "react";
+import {FC, ReactElement, useEffect, useState} from "react";
 import useSpeechRecognition from "../../hooks/useSpeechRecognition/useSpeechRecognition";
 
 export const Main: FC = (): ReactElement => {
@@ -7,12 +7,19 @@ export const Main: FC = (): ReactElement => {
     const [response, setResponse] = useState<string>("");
     const [generating, setGenerating] = useState<boolean>(false);
     const [error, setError] = useState<boolean>(false);
+    const [isMuted, setIsMuted] = useState<boolean>(false); // State to control TTS
 
     useEffect(() => {
         if (text !== "") {
             fetchChatGtpResponse();
         }
     }, [text]);
+
+    useEffect(() => {
+        if (response && !isMuted) { // Check if not muted before reading out
+            readOutResponse(response);
+        }
+    }, [response, isMuted]);
 
     const fetchChatGtpResponse = () => {
         setGenerating(true);
@@ -30,7 +37,7 @@ export const Main: FC = (): ReactElement => {
                 messages: [
                     {
                         role: "system",
-                        content: text + " keep the response concise and include any formatting as HTML (remove backticks and markdown)."
+                        content: text + " keep the response concise and include any formatting as HTML with line breaks after bullet points (remove backticks and markdown)."
                     }
                 ]
             })
@@ -55,6 +62,30 @@ export const Main: FC = (): ReactElement => {
             });
     };
 
+    const readOutResponse = (htmlText: string) => {
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.cancel();
+            const utterance = new SpeechSynthesisUtterance(htmlText.replace(/<[^>]*>/g, ''));
+
+            const voices = window.speechSynthesis.getVoices();
+            const selectedVoice = voices.find(voice => voice.voiceURI === "Samantha");
+
+            if (selectedVoice) {
+                utterance.voice = selectedVoice;
+            } else {
+                console.warn(`Voice with URI Samantha not found.`);
+            }
+
+            utterance.onerror = (event) => {
+                console.error("Speech synthesis error:", event.error);
+            };
+
+            window.speechSynthesis.speak(utterance);
+        } else {
+            console.warn("Speech synthesis not supported in this browser.");
+        }
+    };
+
     return (
         <div className="container">
             {hasRecognitionSupport ? (
@@ -70,7 +101,6 @@ export const Main: FC = (): ReactElement => {
                         <button
                             className="button stop"
                             onClick={stopListening}
-                            disabled={!isListening}
                         >
                             Stop Listening
                         </button>
@@ -81,10 +111,22 @@ export const Main: FC = (): ReactElement => {
                     )}
                     <div className="transcript">{text}</div>
 
+                    <div className="mute-option">
+                        <label className="switch">
+                            <input
+                                type="checkbox"
+                                checked={isMuted}
+                                onChange={() => setIsMuted(!isMuted)}
+                            />
+                            <span className="slider"></span>
+                        </label>
+                        <span className="mute-label">Mute Text-to-Speech</span>
+                    </div>
+
                     <div className="response-section">
                         {generating && <p className="loading">Generating response...</p>}
                         {error && <p className="error">An error occurred while fetching the response.</p>}
-                        {response && (<div className="response" dangerouslySetInnerHTML={{ __html: response }}/>)}
+                        {response && (<div className="response" dangerouslySetInnerHTML={{ __html: response }} />)}
                     </div>
                 </>
             ) : (

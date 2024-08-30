@@ -41,6 +41,7 @@ const useSpeechRecognition = () => {
             setIsListening(false);
             setText("");
             recognition.stop();
+            window.speechSynthesis.cancel();
         }
     }, [recognition]);
 
