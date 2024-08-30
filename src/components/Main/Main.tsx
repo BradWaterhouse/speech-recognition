@@ -7,7 +7,7 @@ export const Main: FC = (): ReactElement => {
   const [response, setResponse] = useState<string>("");
   const [generating, setGenerating] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
-  const [isMuted, setIsMuted] = useState<boolean>(false); // State to control TTS
+  const [isMuted, setIsMuted] = useState<boolean>(false);
 
   useEffect(() => {
     if (text !== "") {
@@ -106,7 +106,14 @@ export const Main: FC = (): ReactElement => {
 
           <div className="mute-option">
             <label className="switch">
-              <input type="checkbox" checked={isMuted} onChange={() => setIsMuted(!isMuted)} />
+              <input
+                type="checkbox"
+                checked={isMuted}
+                onChange={() => {
+                  setIsMuted(!isMuted);
+                  window.speechSynthesis.cancel();
+                }}
+              />
               <span className="slider"></span>
             </label>
             <span className="mute-label">Mute Text-to-Speech</span>
