@@ -12,43 +12,85 @@ code {
     monospace;
 }
 
+/* Main.css */
+
 .container {
-  text-align: center;
+  max-width: 600px;
+  margin: 20px auto;
   padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  max-width: 500px;
-  margin: auto;
   background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
 }
 
 .button {
   padding: 10px 20px;
-  margin: 10px;
   font-size: 16px;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
   color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .button.start {
-  background-color: #007BFF;
+  background-color: #28a745;
 }
 
 .button.stop {
-  background-color: #DC3545;
+  background-color: #dc3545;
+}
+
+.button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
 }
 
 .listening {
-  color: #007BFF;
-  font-size: 18px;
-  margin-top: 20px;
+  color: #007bff;
+  font-weight: bold;
+  margin-bottom: 20px;
 }
 
 .transcript {
+  font-size: 14px;
+  background-color: #e9ecef;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  min-height: 40px;
+}
+
+.response-section {
+  margin-top: 20px;
+}
+
+.loading {
+  color: #ffc107;
+}
+
+.error {
+  color: #dc3545;
+  font-weight: bold;
+}
+
+.response {
   color: #333;
   font-size: 16px;
-  margin-top: 20px;
-  white-space: pre-wrap;
+  background-color: #e9ecef;
+  padding: 10px;
+  border-radius: 4px;
 }
+
+.no-support {
+  color: #dc3545;
+  text-align: center;
+}
+

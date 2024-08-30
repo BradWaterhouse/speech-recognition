@@ -39,6 +39,7 @@ const useSpeechRecognition = () => {
     const stopListening = useCallback((): void => {
         if (recognition) {
             setIsListening(false);
+            setText("");
             recognition.stop();
         }
     }, [recognition]);
