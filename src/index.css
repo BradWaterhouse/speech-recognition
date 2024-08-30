@@ -11,3 +11,44 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.container {
+  text-align: center;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  max-width: 500px;
+  margin: auto;
+  background-color: #f9f9f9;
+}
+
+.button {
+  padding: 10px 20px;
+  margin: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+}
+
+.button.start {
+  background-color: #007BFF;
+}
+
+.button.stop {
+  background-color: #DC3545;
+}
+
+.listening {
+  color: #007BFF;
+  font-size: 18px;
+  margin-top: 20px;
+}
+
+.transcript {
+  color: #333;
+  font-size: 16px;
+  margin-top: 20px;
+  white-space: pre-wrap;
+}
