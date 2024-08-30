@@ -1,6 +1,6 @@
 # React Speech Recognition App
 
-This is a simple React application that uses the Web Speech API to transcribe speech to text and integrates with OpenAI's ChatGPT to provide answers to users' spoken questions. The application allows users to start and stop speech recognition using buttons, display the transcribed text on the screen, and automatically fetch a response from ChatGPT based on the transcribed text. Additionally, the application offers an optional text-to-speech feature to read out the response.
+This is a React application that uses the Web Speech API to transcribe speech to text and integrates with OpenAI's ChatGPT to provide answers to users' spoken questions. The application allows users to start and stop speech recognition using buttons, display the transcribed text on the screen, and automatically fetch a response from ChatGPT based on the transcribed text. Additionally, the application offers an optional text-to-speech feature to read out the response.
 
 ![Football Fixture Risk Predictor Screenshot](public/app-screenshot.png)
 
@@ -32,7 +32,7 @@ This is a simple React application that uses the Web Speech API to transcribe sp
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/your-username/react-speech-recognition-app.git
+   git clone https://github.com/BradWaterhouse/react-speech-recognition-app.git
 
 2. **Navigate to project directory**
 
@@ -46,7 +46,7 @@ This is a simple React application that uses the Web Speech API to transcribe sp
 
 4. **Create .env file**
 
-   In the root of the project directory, create a .env file and add your OpenAI API key:
+   In the root of the project directory, create a `.env` file and add your OpenAI API key:
 
    ```bash
    REACT_APP_CHAT_GPT_API_KEY=your_openai_api_key_here
